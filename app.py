@@ -12,7 +12,7 @@ def index():
     cur = conn.cursor()
     cur.execute('SELECT 1', []) # Query to check that the DB connected
     conn.close()
-    return 'Hello, world Lucy!'
+    return 'Hello, world Lucy with Database!'
 
 if __name__ == "__main__":
     app.run(debug=True)
