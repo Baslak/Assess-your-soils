@@ -2,7 +2,7 @@ from flask import Flask
 import os
 import psycopg2
 
-DB_URL = os.environ.get("DATABASE_URL", "dbname=asess_your_soils_db")
+DB_URL = os.environ.get("DATABASE_URL", "dbname=vinproof_db")
 SECRET_KEY = os.environ.get("SECRET_KEY", "pretend key for testing only")
 
 app = Flask(__name__)
