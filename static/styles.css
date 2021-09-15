@@ -1,57 +1,99 @@
-. {
-    position: relative;
-    width: 1440px;
-    height: 900px;
+*{
     background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 4px
+    margin: auto;
+    font-family: Montserrat;
+}
+.maintitle {
+    display: none;
+}
+header {
+    max-width: 1300px;
+}
+nav {
+    display: flex;
+    max-width: 1300px;
+    order: 1;
+    flex-direction: column;
 }
 .menu-nav {
     display: flex;
+    height: 120px;
+    width: 1300px;
+    padding: 0px;
     list-style: none;
     justify-content: flex-end;
+    color: rgba(0, 98, 22, 1);
 }
-.menu-nav > li {
-    padding: 20px;
+.logo {
+    width: 150px;
+    height: 82px;
 }
 .container {
+    order: 2;
     display: flex;
-    position: relative;
-    width: 1440px;
-    height: 691px;
-    left: 0px;
-    top: 119px;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.container > .image {
+    display: flex;
+    width: 1200px;
+    height: 600px;
+    left: 50px;
+    right: 50px;
+    top: 120px;
 }
 
 .container > h2 {
     position: absolute;
-    width: 1150px;
-    height: 0px;
-    left: 142px;
-    top: 145.72px;
-
-    font-family: Montserrat;
+    top: 250px;
+    left: 450px;
     font-style: normal;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 0px;
 /* identical to box height, or 0% */
-
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: #61594B;
+    transform: rotate(0.06deg);
+}
+.container > .buttons {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    left: 740px;
+    right: 700px;
+    top: 350px;
+    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.25));
+    background: #243C06;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    line-height: 22px;
     display: flex;
     align-items: center;
     text-align: center;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-
-    color: #61594B;
-
-    transform: rotate(0.06deg);
 }
-.button {
-    position:absolute;
-    bottom:10px;
-    right:10px;
-    width:100px;
-    height:30px;
-    filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.25))
+footer {
+    display: flex;
+    position: absolute;
+    order: 3;
+    width: 1200px;
+    height: 40px;
+    right: 50px;
+    left: 50px;
+    font-size: 14px;
+    text-align: center;
+}
+footer > .quote {
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
 }
