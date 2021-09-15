@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinProof</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu-nav"> 
+                <li><img class="logo" src="/static/Logo.png"></li>
+                <li> Login </li>
+                <li> About </li>
+                <li> Your Vineyard </li>
+                <li> Spray Tool </li>
+                <li> Contact </li>
+                <li><a class="button primary" href=/log-out> Log out </a> </li>
+            </ul>
+        </nav>
+    </header>
+    </main>
+        <section>
+            <div class="container">
+                <img class="image" src="/static/vineyard.jpg">
+                <h2>Helping you work in harmony with your land</h2>
+                {% block content %}
+
+                {# {% if user_object['id']: %}
+                    <h2>Welcome {{user_object['name']}}!</h2>
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/signup">Sign-up</a><a href="/login">Login to make changes</a>
+                {% endif %}
+
+                <div container="menu">
+                {% if user_object['id']: %}
+                    <a href="/add_food">Add food</a>
+                {% endif %}
+
+                {% for food in food_list %}
+                    <h2>{{ food['name'] }} - ${{ food['price_formatted'] }}</h2>
+                    <img class="food" src="{{ food['image_url'] }}">
+                {% if user_object['id']: %}
+                    <a href="/edit_food?id={{food['id']}}">Edit</a>
+                {% endif %}
+                {% endfor %}
+                </div>
+                <a href="/reviews">Read Reviews</a> #}
+                {% endblock %}
+                <input class="buttons" type="Join Today" value="Join Today">
+            </div>
+        </section>
+    </main>
+</body>
+</html>
