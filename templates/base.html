@@ -18,10 +18,10 @@
                 <li><a class="links" href="/your_vineyard"> Your Vineyard </li></a>
                 <li><a class="links" href="/spray_tool"> Spray Tool </li></a>
                 <li><a class="links" href="/contact"> Contact </li></a>
-                {% if user_id: %}
-                <li><a class="links" id="logout" href="/logout"> Log out </a> </li>
+                {% if user_object['id']: %}
+                    <li><a class="links" id="logout" href="/logout"> Log out </a> </li>
                 {% else %}
-                <li><a class="links" id="login" href="/login"> Login </a> </li>
+                    <li><a class="links" id="login" href="/login"> Login </a> </li>
                 {% endif %}
             </ul>
         </nav>
@@ -30,7 +30,7 @@
         <section>
             <div class="container">
             {% block content %}
-                <img class="image" src="/static/vineyard.jpg">
+                <div class="content">
                 {% if user_object['id']: %}
                     {% if user_object['company']: %}
                         <h2 class="slogan">Welcome {{user_object['full_name']}} from {{user_object['company']}}</h2>
@@ -43,6 +43,7 @@
                     <h2 class="slogan">Helping you work in harmony with your land</h2>
                     <a class="buttons" id="join" href='/signup'>Join Today</a>
                 {% endif %}
+                </div>
             {% endblock %}
             </div>
         </section>

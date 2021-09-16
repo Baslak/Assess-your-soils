@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Sign up to our database: </h2>
-    <form class="form-control" action="/signup_action" method="POST">
-        <h3>{{error_message}}</h3>
-        <p class="formtext"> Full Name: <p><input type="text" name="full_name"><br>
-        <p class="formtext"> Company (optional): <p><input type="text" name="company"><br>
-        <p class="formtext"> Email: <p><input type="text" name="email"><br>
-        <p class="formtext"> Password: <p><input type="password" name="password"><br>
-        <input class="buttons" type="Submit" value="Sign Up">
+    <h2 class="slogan">Sign up to our database: </h2>
+    <h3 class="error">{{error_message}}</h3>
+    <div class="signup">
+    <form class="signup" action="/signup_action" method="POST">
+        <div class="signup1">
+            <p class="formlabels"> Full Name: <p><input class="formfields" type="text" name="full_name"><br>
+            <p class="formlabels"> Company (optional): <p><input class="formfields" type="text" name="company"><br>
+        </div>
+        <div class="signup2">
+            <p class="formlabels"> Email: <p><input class="formfields" type="text" name="email"><br>
+            <p class="formlabels"> Password: <p><input class="formfields" type="password" name="password"><br>
+        </div>
+        <input id="signup_button" type="Submit" value="Sign Up">
     </form>
+    </div>
 
 {% endblock %}

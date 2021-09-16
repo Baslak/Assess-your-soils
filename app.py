@@ -26,8 +26,11 @@ def homepage():
 
 @app.route('/login')
 def login():
+    user_id = session.get('user_id')
+    print(user_id)
+    user_object = login_check(user_id)
 
-    return render_template('login.html')
+    return render_template('login.html', user_object=user_object)
 
 @app.route('/logout')
 def logout():
@@ -62,8 +65,11 @@ def login_confirm():
         
 @app.route('/signup')
 def signup():
+    user_id = session.get('user_id')
+    print(user_id)
+    user_object = login_check(user_id)
 
-    return render_template('signup.html')
+    return render_template('signup.html', user_object=user_object)
 
 @app.route('/signup_action', methods=['POST'])
 def signup_action():
@@ -85,7 +91,7 @@ def signup_action():
             error_message = 'That email address already exists. Please try again.'
             return render_template('signup.html', error_message=error_message)
     else:
-        error_message = 'That email address is not valid. Please try again.'
+        error_message = 'That email address is not valid.Please try again.'
         print("not valid")
         return render_template('signup.html', error_message=error_message)
 
