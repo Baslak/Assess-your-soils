@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user_object['id'] and vineyard_object['id']: %}
+<form class="form_list" action="/vineyard_confirm" method="POST">
+    <input type="hidden" name="user_id">
+    <p class="formtext"> Vineyard Site: <p><input type="text" name="vineyard_site" placeholder="{{vineyard_object['vineyard_site']}}"><br>
+    <p class="formtext"> Vineyard Size: <p><input type="text" name="vineyard_size" placeholder="{{vineyard_object['vineyard_size']}}">><br>
+    <p class="formtext"> Varieties: <p><input type="text" name="varieties"><br>
+    <p class="formtext"> Elevation: <p><input type="text" name="elevation"><br>
+    <p class="formtext"> Orientation: <p><input type="text" name="orientation"><br>
+    <input id="signup" type="Submit" value="Submit">
+</form>

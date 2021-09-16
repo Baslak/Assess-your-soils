@@ -1,16 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Your vineyard</h2>
-    {% if user_object['id']: %}
-        
-    <form class="form_list" action="/vineyard_confirm" method="POST">
-        <input type="hidden" name="user_id">
-        <p class="formtext"> Vineyard Site: <p><input type="text" name="vineyard_site"><br>
-        <p class="formtext"> Vineyard Size: <p><input type="text" name="vineyard_size"><br>
-        <p class="formtext"> Varieties: <p><input type="text" name="varieties"><br>
-        <p class="formtext"> Elevation: <p><input type="text" name="elevation"><br>
-        <p class="formtext"> Orientation: <p><input type="text" name="orientation"><br>
-        <input id="signup" type="Submit" value="Sign In">
-    </form>
+    {% if user_object['id'] and vineyard_object['id']: %}
+        <h2 class="slogan">Hi {{user_object['full_name']}}, welcome to {{vineyard_object['vineyard_site']}} vineyard: </h2>
+        <p class="formtext"> Vineyard Size: {{vineyard_object['vineyard_size']}} ha<br>
+        <p class="formtext"> Varieties: {{vineyard_object['vineyard_varities']}}<br>
+        <p class="formtext"> Elevation: {{vineyard_object['elevation']}}<br>
+        <p class="formtext"> Orientation: {{vineyard_object['orientation']}}<br>
+        <a class="buttons" id="join" href='/edit_vineyard?id={{vineyard_object['id']}}'>Edit Vineyard</a>
+        <a class="buttons" id="join" href='/delete_vineyard?id={{vineyard_object['id']}}'>Delete Vineyard</a>
+        <a class="buttons" id="join" href='/spray_tool?id={{vineyard_object['id']}}'>Spray Tool</a>
+    {% elif user_object['id'] %}
+        <h2>Create your vineyard: </h2>
+        <form class="form_list" action="/vineyard_confirm" method="POST">
+            <p class="formtext"> Vineyard Site: <p><input type="text" name="vineyard_site"><br>
+            <p class="formtext"> Vineyard Size: <p><input type="text" name="vineyard_size"><br>
+            <p class="formtext"> Varieties: <p><input type="text" name="varieties"><br>
+            <p class="formtext"> Elevation: <p><input type="text" name="elevation"><br>
+            <p class="formtext"> Orientation: <p><input type="text" name="orientation"><br>
+            <input id="signup" type="Submit" value="Submit">
+        </form>
+    {% else %}
+        <h2 class="slogan">Add your vineyard</h2>
+        <a class="buttons" id="join" href='/signup'>Create account</a>
+    {% endif %}
 {% endblock %}

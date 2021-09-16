@@ -14,12 +14,15 @@
         <nav>
             <ul class="menu-nav"> 
                 <li><a class="links" href="/"><img class="logo" src="/static/Logo.png"></li> </a>
-                <li><a class="links" id="login" href="/login"> Login </li></a>
                 <li><a class="links" href="/about"> About </li></a>
                 <li><a class="links" href="/your_vineyard"> Your Vineyard </li></a>
                 <li><a class="links" href="/spray_tool"> Spray Tool </li></a>
                 <li><a class="links" href="/contact"> Contact </li></a>
-                <li><a class="links" id="logout" href=/log-out> Log out </a> </li>
+                {% if user_id: %}
+                <li><a class="links" id="logout" href="/logout"> Log out </a> </li>
+                {% else %}
+                <li><a class="links" id="login" href="/login"> Login </a> </li>
+                {% endif %}
             </ul>
         </nav>
     </header>

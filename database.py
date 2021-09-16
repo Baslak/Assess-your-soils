@@ -1,7 +1,5 @@
 import psycopg2
 
-import psycopg2
-
 def sql_select(query, params):
   conn = psycopg2.connect("dbname=vinproof_db")
   cur = conn.cursor()
