@@ -20,9 +20,12 @@ nav {
     height: 120px;
     width: 1200px;
     padding: 0px;
-    list-style: none;
     justify-content: flex-end;
+    list-style: none;
+}
+.links {
     color: rgba(0, 98, 22, 1);
+    text-decoration: none;
 }
 .logo {
     width: 150px;
@@ -102,6 +105,7 @@ footer {
     font-size: 14px;
     text-align: center;
 }
+
 footer > .quote {
     display: flex;
     text-align: left;

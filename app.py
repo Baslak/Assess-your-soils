@@ -81,6 +81,25 @@ def signup_action():
         [email, name, password_hash])
     return redirect('/')
 
+@app.route('/about')
+def about():
+    
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    
+    return render_template('contact.html')
+
+@app.route('/your_vineyard')
+def yourvineyard():
+    
+    return render_template('yourvineyard.html')
+
+@app.route('/spray_tool')
+def spraytool():
+    
+    return render_template('contact.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
