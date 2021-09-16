@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title class="maintitle">VinProof</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/main_styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
 
 </head>
@@ -14,12 +14,12 @@
         <nav>
             <ul class="menu-nav"> 
                 <li><a class="links" href="/"><img class="logo" src="/static/Logo.png"></li> </a>
-                <li><a class="links" href="/login"> Login </li></a>
+                <li><a class="links" id="login" href="/login"> Login </li></a>
                 <li><a class="links" href="/about"> About </li></a>
                 <li><a class="links" href="/your_vineyard"> Your Vineyard </li></a>
                 <li><a class="links" href="/spray_tool"> Spray Tool </li></a>
                 <li><a class="links" href="/contact"> Contact </li></a>
-                <li><a class="links" href=/log-out> Log out </a> </li>
+                <li><a class="links" id="logout" href=/log-out> Log out </a> </li>
             </ul>
         </nav>
     </header>
@@ -28,30 +28,18 @@
             <div class="container">
             {% block content %}
                 <img class="image" src="/static/vineyard.jpg">
-                <h2 class="slogan">Helping you work in harmony with your land</h2>
-            
-                {# {% if user_object['id']: %}
-                    <h2>Welcome {{user_object['name']}}!</h2>
-                    <a href="/logout">Logout</a>
+                {% if user_object['id']: %}
+                    {% if user_object['company']: %}
+                        <h2 class="slogan">Welcome {{user_object['full_name']}} from {{user_object['company']}}</h2>
+                        <a class="buttons" id="join" href='/your_vineyard'>Your Vineyard</a>
+                    {% else %}
+                        <h2 class="slogan">Welcome {{user_object['full_name']}}</h2>
+                        <a class="buttons" id="join" href='/your_vineyard'>Your Vineyard</a>
+                    {% endif %}
                 {% else %}
-                    <a href="/signup">Sign-up</a><a href="/login">Login to make changes</a>
+                    <h2 class="slogan">Helping you work in harmony with your land</h2>
+                    <a class="buttons" id="join" href='/signup'>Join Today</a>
                 {% endif %}
-
-                <div container="menu">
-                {% if user_object['id']: %}
-                    <a href="/add_food">Add food</a>
-                {% endif %}
-
-                {% for food in food_list %}
-                    <h2>{{ food['name'] }} - ${{ food['price_formatted'] }}</h2>
-                    <img class="food" src="{{ food['image_url'] }}">
-                {% if user_object['id']: %}
-                    <a href="/edit_food?id={{food['id']}}">Edit</a>
-                {% endif %}
-                {% endfor %}
-                </div>
-                <a href="/reviews">Read Reviews</a> #}
-            <a class="buttons" id="join" href='/signup'>Join Today</a>
             {% endblock %}
             </div>
         </section>

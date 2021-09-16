@@ -1,5 +1,8 @@
 from database import sql_select, sql_write
+from models.users import login_check
+
 from flask import Flask, request, render_template, redirect, session
+
 import psycopg2
 import bcrypt
 import os
@@ -12,11 +15,11 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/')
 def homepage():
-    conn = psycopg2.connect(DB_URL)
-    cur = conn.cursor()
-    cur.execute('SELECT 1', []) # Query to check that the DB connected
-    conn.close()
-    return render_template('base.html')
+    user_id = session.get('user_id')
+    print(user_id)
+    user_object = login_check(user_id)
+
+    return render_template('base.html', user_object=user_object)
 
 @app.route('/login')
 def login():
@@ -33,10 +36,10 @@ def login_confirm():
     email = request.form.get('email')
     password = request.form.get('password')
 
-    user_info = sql_select("SELECT id, name, email, password_hash FROM users WHERE email = %s", [email])
+    user_info = sql_select("SELECT id, full_name, company, email, password_hash FROM users WHERE email = %s", [email])
     print(user_info)
 
-    password_hash = user_info[0][3]
+    password_hash = user_info[0][4]
     print(password_hash)
     print(password)
 
@@ -46,10 +49,11 @@ def login_confirm():
     if len(user_info) == 0:
         return redirect('/login')
     elif valid:
-        session['user_email'] = user_info[0][1]
-        session['username'] = user_info[0][2]
+        session['full_name'] = user_info[0][1]
+        session['company'] = user_info[0][2]
+        session['email'] = user_info[0][3]
         session['user_id'] = user_info[0][0]
-        session['password_hash'] = user_info[0][3]
+        session['password_hash'] = user_info[0][4]
         return redirect('/')
     else:
         return redirect('/login')
@@ -61,24 +65,21 @@ def signup():
 
 @app.route('/signup_action', methods=['POST'])
 def signup_action():
+    full_name = request.form.get('full_name')
+    company = request.form.get('company')
     email = request.form.get('email')
-    name = request.form.get('username')
     password = request.form.get('password')
 
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+    
+    user = sql_select('SELECT id, full_name, company, email, password_hash FROM users WHERE email = %s', [email])
 
-    user_info = sql_select("SELECT id, name, email, password_hash FROM users WHERE email = %s", [email])
-    print(user_info)
-
-    user_password = user_info[0][2]
-    print(user_password)
-
-    if str(email) == user_password: #if len(user_info) > 0:
+    if not user:
+        sql_write("INSERT INTO users (full_name, company, email, password_hash) VALUES (%s, %s, %s, %s)",
+        [full_name, company, email, password_hash])
+    else:
         error_message = 'That email address already exists. Please try again.'
         return render_template('signup.html', error_message=error_message)
-    else:
-        sql_write("INSERT INTO users (email, name, password_hash) VALUES (%s, %s, %s)",
-        [email, name, password_hash])
     return redirect('/')
 
 @app.route('/about')

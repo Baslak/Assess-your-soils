@@ -72,6 +72,7 @@ INSERT INTO spray_program (Vine_Stage, E_L, Product, PD_Target, Rate_per_Ha, Rat
 
 CREATE TABLE vineyard (
     id SERIAL PRIMARY KEY,
+    owner_email TEXT,
     vineyard_site TEXT,
 	vineyard_size INTEGER,
     varieties TEXT,
@@ -79,4 +80,4 @@ CREATE TABLE vineyard (
     orientation TEXT
 );
 
-INSERT INTO vineyard (vineyard_site, vineyard_size, varieties, elevation, orientation) VALUES ('Maffra', 3, 'Chardonnay, Pinot Noir', 400, 'North-West');
+INSERT INTO vineyard (owner_email, vineyard_site, vineyard_size, varieties, elevation, orientation) VALUES ('lucy@example.com', 'Maffra', 3, 'Chardonnay, Pinot Noir', 400, 'North-West');

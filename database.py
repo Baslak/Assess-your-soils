@@ -1,7 +1,9 @@
 import psycopg2
 
+import psycopg2
+
 def sql_select(query, params):
-  conn = psycopg2.connect("dbname=food_truck")
+  conn = psycopg2.connect("dbname=vinproof_db")
   cur = conn.cursor()
   cur.execute(query, params)
   results = cur.fetchall()
@@ -10,7 +12,7 @@ def sql_select(query, params):
   return results
 
 def sql_write(query, params):
-  conn = psycopg2.connect("dbname=food_truck")
+  conn = psycopg2.connect("dbname=vinproof_db")
   cur = conn.cursor()
   cur.execute(query, params)
   conn.commit()
