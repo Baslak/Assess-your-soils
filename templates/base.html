@@ -13,8 +13,8 @@
     <header>
         <nav>
             <ul class="menu-nav"> 
-                <li><img class="logo" src="/static/Logo.png"></li>
-                <li> Login </li>
+                <li><a href="/"><img class="logo" src="/static/Logo.png"></li> </a>
+                <li><a href="/login"> Login </li></a>
                 <li> About </li>
                 <li> Your Vineyard </li>
                 <li> Spray Tool </li>
@@ -26,10 +26,10 @@
     </main>
         <section>
             <div class="container">
+            {% block content %}
                 <img class="image" src="/static/vineyard.jpg">
-                <h2>Helping you work in harmony with your land</h2>
-                {% block content %}
-
+                <h2 class="slogan">Helping you work in harmony with your land</h2>
+            
                 {# {% if user_object['id']: %}
                     <h2>Welcome {{user_object['name']}}!</h2>
                     <a href="/logout">Logout</a>
@@ -51,13 +51,12 @@
                 {% endfor %}
                 </div>
                 <a href="/reviews">Read Reviews</a> #}
-                {% endblock %}
-                <input class="buttons" type="Join Today" value="Join Today">
+            <a class="buttons" id="join" href='/signup'>Join Today</a>
+            {% endblock %}
             </div>
         </section>
         <footer>
-        <p class="copyright"> © VinProof </p>
-        <p class="quote">"It's easier to talk about difficult subjects over a bottle of wine than a bowl of salad"</p>
+        <p class="copyright"> © VinProof 2021</p>
         </footer>
     </main>
 </body>

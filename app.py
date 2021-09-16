@@ -52,7 +52,35 @@ def login_confirm():
         session['password_hash'] = user_info[0][3]
         return redirect('/')
     else:
-        return redirect('/login') 
+        return redirect('/login')
+        
+@app.route('/signup')
+def signup():
+
+    return render_template('signup.html')
+
+@app.route('/signup_action', methods=['POST'])
+def signup_action():
+    email = request.form.get('email')
+    name = request.form.get('username')
+    password = request.form.get('password')
+
+    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    user_info = sql_select("SELECT id, name, email, password_hash FROM users WHERE email = %s", [email])
+    print(user_info)
+
+    user_password = user_info[0][2]
+    print(user_password)
+
+    if str(email) == user_password: #if len(user_info) > 0:
+        error_message = 'That email address already exists. Please try again.'
+        return render_template('signup.html', error_message=error_message)
+    else:
+        sql_write("INSERT INTO users (email, name, password_hash) VALUES (%s, %s, %s)",
+        [email, name, password_hash])
+    return redirect('/')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Sign up to our database: </h2>
+    <form class="form_list" action="/signup_action" method="POST">
+        <h3>{{error_message}}</h3>
+        <p class="formtext"> Full Name: <p><input type="text" name="full_name"><br>
+        <p class="formtext"> Company (optional): <p><input type="text" name="company"><br>
+        <p class="formtext"> Email: <p><input type="text" name="email"><br>
+        <p class="formtext"> Password: <p><input type="password" name="password"><br>
+    </form>
+    <input class="buttons" type="Submit" value="Sign Up">
+{% endblock %}
