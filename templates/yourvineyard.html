@@ -8,20 +8,19 @@
             Varieties: {{vineyard_object['vineyard_varities']}}<br><br>
             Elevation: {{vineyard_object['elevation']}}<br><br>
             Orientation: {{vineyard_object['orientation']}}<br><br>
-            <a class="buttons" id="vineyard_buttons" href='/edit_vineyard?id={{vineyard_object['id']}}'>Edit</a><br>
-            <a class="buttons" id="vineyard_buttons" href='/delete_vineyard?id={{vineyard_object['id']}}'>Delete</a><br>
-            <a class="buttons" id="vineyard_buttons" href='/spray_tool?id={{vineyard_object['id']}}'>Spray Tool</a>
+            <a class="buttons" id="vineyard_buttons" href="/edit_vineyard?id={{vineyard_object['id']}}">Edit</a><br>
+            <a class="buttons" id="vineyard_buttons" href="/spray_tool?id={{vineyard_object['id']}}">Spray Tool</a>
         </div>
     {% elif user_object['id'] %}
         <h2 class="slogan">Create your vineyard: </h2>
         <div class="formtext">
             <form class="formtext" action="/vineyard_confirm" method="POST">
-                Vineyard Site: <p><input type="text" name="vineyard_site"><br>
-                Vineyard Size (ha): <p><input type="text" name="vineyard_size"><br>
-                Varieties: <p><input type="text" name="varieties"><br>
-                Elevation: <p><input type="text" name="elevation"><br>
-                Orientation: <p><input type="text" name="orientation"><br>
-                <input id="vineyard_buttons" type="Submit" value="Submit">
+                Vineyard Site: <input type="text" name="vineyard_site"><br>
+                Vineyard Size (ha): <input type="text" name="vineyard_size"><br>
+                Varieties: <input type="text" name="varieties"><br>
+                Elevation: <input type="text" name="elevation"><br>
+                Orientation: <input type="text" name="orientation"><br>
+                <input class="buttons" id="vineyard_buttons" type="Submit" value="Submit">
             </form>
         </div>
     {% else %}

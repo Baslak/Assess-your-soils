@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% if user_object['id'] and vineyard_object['id']: %}
-<form class="form_list" action="/vineyard_confirm" method="POST">
-    <input type="hidden" name="user_id">
-    <p class="formtext"> Vineyard Site: <p><input type="text" name="vineyard_site" placeholder="{{vineyard_object['vineyard_site']}}"><br>
-    <p class="formtext"> Vineyard Size: <p><input type="text" name="vineyard_size" placeholder="{{vineyard_object['vineyard_size']}}">><br>
-    <p class="formtext"> Varieties: <p><input type="text" name="varieties"><br>
-    <p class="formtext"> Elevation: <p><input type="text" name="elevation"><br>
-    <p class="formtext"> Orientation: <p><input type="text" name="orientation"><br>
-    <input id="signup" type="Submit" value="Submit">
-</form>
+<div class="container">
+    {% if user_object['id'] %}
+    <form class="formtext" action="/save_vineyard" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        Vineyard Site: <input id="values" type="text" name="vineyard_site" placeholder="{{vineyard_object['vineyard_site']}}" value="{{vineyard_site}}"><br>
+        Vineyard Size: <input id="values" type="text" name="vineyard_size" placeholder="{{vineyard_object['vineyard_size']}}" value="{{vineyard_size}}"><br>
+        Varieties: <input id="values" type="text" name="varieties" placeholder="{{vineyard_object['varities']}}" value="{{varieties}}"><br>
+        Elevation: <input id="values" type="text" name="elevation" placeholder="{{vineyard_object['elevation']}}" value="{{elevation}}"><br>
+        Orientation: <input id="values" type="text" name="orientation" placeholder="{{vineyard_object['orientation']}}" value="{{orientation}}"><br>
+        <input class="buttons" id="vineyard_buttons" type="Submit" value="Save">
+    </form>
+    <form class="formtext" action="/remove_vineyard" method="POST">
+        <input type="hidden" name="id" value="{{id}}">
+        <input type="submit" class="buttons" id="vineyard_buttons" value="Delete"><br>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

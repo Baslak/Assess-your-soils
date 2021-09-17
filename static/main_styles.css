@@ -107,10 +107,9 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 10px;
+    padding: 40px;
     background-image: none;
     background: rgb(205, 203, 193, 0);
-    height: 200px;
     width: 600px;
     text-align: center;
     font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
@@ -161,6 +160,7 @@ h3 {
 }
 .formtext > #vineyard_buttons {
     display: flex;
+    padding: 10px;
     flex-direction: row;
     justify-content: center;
     align-items: center;

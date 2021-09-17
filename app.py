@@ -1,7 +1,7 @@
 from re import template
 from database import sql_select, sql_write
 from models.users import login_check
-from models.vineyards import add_vineyard, vineyard_check, delete_vineyard, update_vineyard
+from models.vineyards import add_vineyard, vineyard_check, delete_vineyard, update_vineyard, amend_vineyard
 
 from flask import Flask, request, render_template, redirect, session
 from email.utils import parseaddr
@@ -19,7 +19,6 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @app.route('/')
 def homepage():
     user_id = session.get('user_id')
-    print(user_id)
     user_object = login_check(user_id)
 
     return render_template('base.html', user_id=user_id, user_object=user_object)
@@ -27,7 +26,6 @@ def homepage():
 @app.route('/login')
 def login():
     user_id = session.get('user_id')
-    print(user_id)
     user_object = login_check(user_id)
 
     return render_template('login.html', user_object=user_object)
@@ -41,7 +39,6 @@ def logout():
 def login_confirm():
     email = request.form.get('email')
     password = request.form.get('password')
-    print(password)
 
     user_info = sql_select("SELECT id, full_name, company, email, password_hash FROM users WHERE email = %s", [email])
     
@@ -66,7 +63,6 @@ def login_confirm():
 @app.route('/signup')
 def signup():
     user_id = session.get('user_id')
-    print(user_id)
     user_object = login_check(user_id)
 
     return render_template('signup.html', user_object=user_object)
@@ -112,7 +108,6 @@ def yourvineyard():
     user_id = session.get('user_id')
     user_object = login_check(user_id)
     owner_email = session.get('email')
-    print(owner_email)
 
     vineyard_object = vineyard_check(owner_email)
 
@@ -129,32 +124,46 @@ def yourvineyardconfirm():
     elevation  = request.form.get('elevation')
     orientation = request.form.get('orientation')
     owner_email = session.get('email')
-    print(owner_email)
-    print(vineyard_site)
 
     add_vineyard(owner_email, vineyard_site, vineyard_size, varieties, orientation, elevation)
 
     vineyard_object = vineyard_check(owner_email)
-
+    
     return render_template('yourvineyard.html', user_object=user_object, vineyard_object=vineyard_object)
 
-@app.route('/edit_vineyard', methods=['POST'])
+@app.route('/edit_vineyard', methods=['GET'])
 def edit_vineyard():
-    id = request.form.get('id')
-    
+    user_id = session.get('user_id')        
+    user_object = login_check(user_id)
+
+    id = request.args.get('id')
+    print(id)
+
+    vineyard_object = amend_vineyard(id)
+
+    return render_template('editvineyard.html', vineyard_object=vineyard_object, user_object=user_object, id=id)
+
+@app.route('/save_vineyard', methods=['POST'])
+def save_vineyard():
+    user_id = session.get('user_id')    
+    user_object = login_check(user_id)
+
     vineyard_site = request.form.get('vineyard_site')
-    print(vineyard_site)
     vineyard_size = request.form.get('vineyard_size')
     varieties = request.form.get('varieties')
     elevation = request.form.get('elevation')
     orientation = request.form.get('orientation')
+    id = request.form.get('id')
 
-    update_vineyard(vineyard_site, vineyard_size, varieties, orientation, elevation, id)
+    update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, id)
 
-    return render_template('/your_vineyard')
+    owner_email = session.get('email')
+    vineyard_object = vineyard_check(owner_email)
 
-@app.route('/delete_vineyard', methods=['POST'])
-def delete_vineyard():
+    return render_template('yourvineyard.html', vineyard_object=vineyard_object, user_object=user_object)
+
+@app.route('/remove_vineyard', methods=['POST'])
+def remove_vineyard():
     id = request.form.get('id')
 
     delete_vineyard(id)
