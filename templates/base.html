@@ -7,7 +7,20 @@
     <title class="maintitle">VinProof</title>
     <link rel="stylesheet" href="/static/main_styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
-
+    <script>
+        function checkempty(form) {
+            if (form.name.value == null ||
+                form.name.value == undefined ||
+                form.name.value.length == 0) {
+               
+                alert("Name cannot be empty\n");
+                return false;
+            } else {
+                alert("Your response has been recorded\n");
+                return true;
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
