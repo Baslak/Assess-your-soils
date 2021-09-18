@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Login in to your portal: </h2>
-    <form class="form_list" action="/login_confirm" method="POST">
-        <input type="hidden" name="user_id">
-        <p class="formtext"> Email: <p><input type="text" name="email"><br>
-        <p class="formtext"> Password: <p><input type="password" name="password"><br>
-        <input id="signup" type="Submit" value="Sign In">
-    </form>
+    <h2 class="slogan_main">Who are we: </h2>
+    <p class="intro">
+    We are a vineyard service offering you the ability to monitor, store and update your vineyards.<br><br>
+    We believe everyone should be able to effectively and safely store their vineyard information online to track vineyard stages, calculate sprays and record new information.<br><br>
+    Join us today to start getting more out of your vineyard</p>
+    <div class="buttons_main">
+        <a class="vineyard_buttons" href='/signup'>Join Today</a>
+    </div>
 {% endblock %}

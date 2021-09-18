@@ -3,7 +3,6 @@
 {% block content %}
     <h2 class="slogan">Sign up to our database: </h2>
     <h3 class="error">{{error_message}}</h3>
-    <div class="signup">
     <form class="signup" action="/signup_action" method="POST">
         <div class="signup1">
             <p class="formlabels"> Full Name: <p><input class="formfields" type="text" name="full_name"><br>
@@ -15,5 +14,4 @@
         </div>
         <input id="signup_button" type="Submit" value="Sign Up">
     </form>
-</div>
 {% endblock %}

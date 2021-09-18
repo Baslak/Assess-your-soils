@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user_object['id'] and vineyard_object['id']: %}
+    <h3>Hi {{user_object['full_name']}}, welcome to {{vineyard_object['vineyard_site']}} vineyard: </h3>
+    <a class="vineyard_buttons" href="https://www.awri.com.au/wp-content/uploads/grapegrowth.pdf">Check your EL </a>
+    {% else %}
+        <h2 class="slogan_main">Add your vineyard: </h2>
+        <a id="account" href='/signup'>Create account</a>
+    {% endif %}
+{% endblock %}

@@ -77,7 +77,8 @@ CREATE TABLE vineyard (
 	vineyard_size INTEGER,
     varieties TEXT,
 	elevation INTEGER,
-    orientation TEXT
+    orientation TEXT,
+    E_L_Stage INTEGER
 );
 
-INSERT INTO vineyard (owner_email, vineyard_site, vineyard_size, varieties, elevation, orientation) VALUES ('lucy@example.com', 'Maffra', 3, 'Chardonnay, Pinot Noir', 400, 'North-West');
+INSERT INTO vineyard (owner_email, vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage) VALUES ('lucy@example.com', 'Maffra', 3, 'Chardonnay, Pinot Noir', 400, 'North-West', 0);

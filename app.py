@@ -38,6 +38,9 @@ def logout():
 
 @app.route('/login_confirm', methods=['POST'])
 def login_confirm():
+    user_id = session.get('user_id')
+    user_object = login_check(user_id)
+
     email = request.form.get('email')
     password = request.form.get('password')
 
@@ -45,7 +48,7 @@ def login_confirm():
     
     if email == "" or len(user_info) == 0:
         no_strings_attached = 'No dice, i need strings!'
-        return render_template('login.html', no_strings_attached=no_strings_attached)
+        return render_template('login.html', no_strings_attached=no_strings_attached, user_object=user_object)
     else: 
         password_hash = user_info[0][4]
         valid = bcrypt.checkpw(password.encode(), password_hash.encode())
@@ -74,6 +77,9 @@ def signup():
 
 @app.route('/signup_action', methods=['POST'])
 def signup_action():
+    user_id = session.get('user_id')
+    user_object = login_check(user_id)
+
     full_name = request.form.get('full_name')
     company = request.form.get('company')
     email = request.form.get('email')
@@ -84,29 +90,42 @@ def signup_action():
 
         user = sql_select('SELECT id, full_name, company, email, password_hash FROM users WHERE email = %s', [email])
         password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
         if not user:
             sql_write("INSERT INTO users (full_name, company, email, password_hash) VALUES (%s, %s, %s, %s)",
             [full_name, company, email, password_hash])
 
+            return render_template('login.html', user_object=user_object)
+
         elif user:
-            error_message = 'That email address already exists. Please try again.'
-            return render_template('signup.html', error_message=error_message)
+            error_message = 'That email address already exists.'
+            return render_template('signup.html', error_message=error_message, user_object=user_object)
     else:
-        error_message = 'That email address is not valid.Please try again.'
+        error_message = 'That email address is not valid.'
         print("not valid")
-        return render_template('signup.html', error_message=error_message)
+        return render_template('signup.html', error_message=error_message, user_object=user_object)
 
     return redirect('/')
 
 @app.route('/about')
 def about():
-    
-    return render_template('about.html')
+    user_id = session.get('user_id')
+    user_object = login_check(user_id)
+    owner_email = session.get('email')
 
-@app.route('/contact')
-def contact():
-    
-    return render_template('contact.html')
+    vineyard_object = vineyard_check(owner_email)
+
+    return render_template('about.html', user_object=user_object, vineyard_object=vineyard_object)
+
+@app.route('/el_stage')
+def el():
+    user_id = session.get('user_id')
+    user_object = login_check(user_id)
+    owner_email = session.get('email')
+
+    vineyard_object = vineyard_check(owner_email)
+
+    return render_template('Elstage.html', user_object=user_object, vineyard_object=vineyard_object)
 
 @app.route('/your_vineyard')
 def yourvineyard():
@@ -128,9 +147,10 @@ def yourvineyardconfirm():
     varieties = request.form.get('varities')
     elevation  = request.form.get('elevation')
     orientation = request.form.get('orientation')
+    E_L_Stage = request.form.get('E_L_Stage')
     owner_email = session.get('email')
 
-    add_vineyard(owner_email, vineyard_site, vineyard_size, varieties, orientation, elevation)
+    add_vineyard(owner_email, vineyard_site, vineyard_size, varieties, orientation, elevation, E_L_stage)
 
     vineyard_object = vineyard_check(owner_email)
     
@@ -158,10 +178,12 @@ def save_vineyard():
     varieties = request.form.get('varieties')
     elevation = request.form.get('elevation')
     orientation = request.form.get('orientation')
+    E_L_Stage = request.form.get('E_L_Stage')
+
     id = request.form.get('id')
 
     if not vineyard_site == "":
-        update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, id)
+        update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage, id)
         owner_email = session.get('email')
         vineyard_object = vineyard_check(owner_email)
         return render_template('yourvineyard.html', vineyard_object=vineyard_object, user_object=user_object)
@@ -188,23 +210,15 @@ def spraytool():
 
     return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, id=id)
 
-@app.route('/spray_calculator', methods=['POST'])
+@app.route('/spray_calculator')
 def spray_calculator():
-    user_id = session.get('user_id')    
+    user_id = session.get('user_id')
     user_object = login_check(user_id)
+    owner_email = session.get('email')
 
-    id = request.args.get('id')
-    print(id)
+    vineyard_object = vineyard_check(owner_email)
 
-    vineyard_object = amend_vineyard(id)
-
-    el = request.form.get('e_l_stage')
-    print(el)
-
-    spray_info = check_spray(el)
-    print(spray_info)
-
-    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, spray_info=spray_info)
+    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object)
 
 if __name__ == "__main__":
     app.run(debug=True)

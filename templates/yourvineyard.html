@@ -3,28 +3,35 @@
 {% block content %}
     {% if user_object['id'] and vineyard_object['id']: %}
         <h2 class="slogan">Hi {{user_object['full_name']}}, welcome to {{vineyard_object['vineyard_site']}} vineyard: </h2>
-        <div class="formtext">
+        <div class="info">
             Vineyard Size: {{vineyard_object['vineyard_size']}} ha<br><br>
-            Varieties: {{vineyard_object['vineyard_varities']}}<br><br>
+            Varieties: {{vineyard_object['varieties']}}<br><br>
             Elevation: {{vineyard_object['elevation']}}<br><br>
             Orientation: {{vineyard_object['orientation']}}<br><br>
-            <a class="buttons" id="vineyard_buttons" href="/edit_vineyard?id={{vineyard_object['id']}}">Edit</a><br>
-            <a class="buttons" id="vineyard_buttons" href="/spray_tool?id={{vineyard_object['id']}}">Spray Tool</a>
+            EL_Stage: {{vineyard_object['E_L_Stage']}}<br><br>
+        </div>
+        <div class="buttons">
+            <a class="vineyard_buttons" href="/edit_vineyard?id={{vineyard_object['id']}}">Edit</a><br>
+            <a class="vineyard_buttons" href="/spray_tool?id={{vineyard_object['id']}}">Spray Tool</a>
         </div>
     {% elif user_object['id'] %}
-        <h2 class="slogan">Create your vineyard: </h2>
-        <div class="formtext">
+        <h2 class="slogan_main" id="your_vineyard">Create your vineyard: </h2>
+        <div class="info">
             <form class="formtext" action="/vineyard_confirm" method="POST">
                 Vineyard Site: <input type="text" name="vineyard_site"><br>
                 Vineyard Size (ha): <input type="text" name="vineyard_size"><br>
                 Varieties: <input type="text" name="varieties"><br>
                 Elevation: <input type="text" name="elevation"><br>
                 Orientation: <input type="text" name="orientation"><br>
-                <input class="buttons" id="vineyard_buttons" type="Submit" value="Submit">
+                EL_stage: <input type="text" name="E_L_Stage"><br>
+            </div>
+            <div class="buttons">
+                <input class="vineyard_buttons" type="Submit" value="Submit">
+            </div>
             </form>
         </div>
     {% else %}
-        <h2 class="slogan">Add your vineyard</h2>
+        <h2 class="slogan_main">Add your vineyard</h2>
         <a id="account" href='/signup'>Create account</a>
     {% endif %}
 {% endblock %}

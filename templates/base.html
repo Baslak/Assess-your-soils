@@ -30,7 +30,7 @@
                 <li><a class="links" href="/about"> About </li></a>
                 <li><a class="links" href="/your_vineyard"> Your Vineyard </li></a>
                 <li><a class="links" href="/spray_tool"> Spray Tool </li></a>
-                <li><a class="links" href="/contact"> Contact </li></a>
+                <li><a class="links" href="/el_stage"> Check your EL stage </li></a>
                 {% if user_object['id']: %}
                     <li><a class="links" id="logout" href="/logout"> Log out </a> </li>
                 {% else %}
@@ -42,23 +42,29 @@
     </main>
         <section>
             <div class="container">
-            {% block content %}
                 <div class="content">
+                {% block content %}
                 {% if user_object['id']: %}
                     {% if user_object['company']: %}
-                        <h2 class="slogan">Welcome {{user_object['full_name']}} from {{user_object['company']}}</h2>
-                        <a class="buttons" id="join" href='/your_vineyard'>Your Vineyard</a>
+                        <h2 class="slogan_main">Welcome {{user_object['full_name']}} from {{user_object['company']}}</h2>
+                        <div class="buttons_main">
+                            <a class="vineyard_buttons" href='/your_vineyard'>Your Vineyard</a>
+                        </div>
                     {% else %}
-                        <h2 class="slogan">Welcome {{user_object['full_name']}}</h2>
-                        <a class="buttons" id="join" href='/your_vineyard'>Your Vineyard</a>
+                        <h2 class="slogan_main">Welcome {{user_object['full_name']}}</h2>
+                    <div class="buttons_main">
+                        <a class="vineyard_buttons" href='/your_vineyard'>Your Vineyard</a>
+                    </div>
                     {% endif %}
                 {% else %}
-                    <h2 class="slogan">Helping you work in harmony with your land</h2>
-                    <a class="buttons" id="join" href='/signup'>Join Today</a>
+                    <h2 class="slogan_main">Helping you work in harmony with your land</h2>
+                    <div class="buttons_main">
+                        <a class="vineyard_buttons" href='/signup'>Join Today</a>
+                    </div>
                 {% endif %}
                 </div>
-            {% endblock %}
             </div>
+            {% endblock %}
         </section>
         <footer>
         <p class="copyright"> © VinProof 2021</p>
