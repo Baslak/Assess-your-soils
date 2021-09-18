@@ -11,7 +11,6 @@ import psycopg2
 import bcrypt
 import os
 
-DB_URL = os.environ.get("DATABASE_URL", "dbname=vinproof_db")
 SECRET_KEY = os.environ.get("SECRET_KEY", "pretend key for testing only")
 
 app = Flask(__name__)
