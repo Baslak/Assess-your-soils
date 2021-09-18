@@ -41,11 +41,11 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 
 Open your terminal: <br>
 
-1. Create a database called:
+i. Create a database called:
 
         <createdb vinproof_db>
 
-2. Enter in your databases according to the schema.sql file to enter the three tables:<br>
+ii. Enter in your databases according to the schema.sql file to enter the three tables:<br>
 
 <ul>
     <li>vineyard</li>
