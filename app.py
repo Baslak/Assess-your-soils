@@ -150,7 +150,7 @@ def yourvineyardconfirm():
     E_L_Stage = request.form.get('E_L_Stage')
     owner_email = session.get('email')
 
-    add_vineyard(owner_email, vineyard_site, vineyard_size, varieties, orientation, elevation, E_L_stage)
+    add_vineyard(owner_email, vineyard_site, vineyard_size, varieties, orientation, elevation, E_L_Stage)
 
     vineyard_object = vineyard_check(owner_email)
     
@@ -204,7 +204,6 @@ def spraytool():
     user_object = login_check(user_id)
 
     id = request.args.get('id')
-    print(id)
 
     vineyard_object = amend_vineyard(id)
 
@@ -212,13 +211,39 @@ def spraytool():
 
 @app.route('/spray_calculator')
 def spray_calculator():
-    user_id = session.get('user_id')
+    user_id = session.get('user_id')    
     user_object = login_check(user_id)
-    owner_email = session.get('email')
 
-    vineyard_object = vineyard_check(owner_email)
+    id = request.args.get('id')
 
-    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object)
+    vineyard_object = amend_vineyard(id)
+    print(vineyard_object)
+
+    el = vineyard_object['E_L_stage']
+    size = vineyard_object['vineyard_size']
+
+    spray_info= check_spray(el)
+    print(spray_info)
+    
+    spray = {
+        'vine_stage': spray_info[0],
+        'product': spray_info[2],
+        'pd_target': spray_info[3],
+        'notes': spray_info[4],
+        'approx_timing': spray_info[9],
+    }
+
+    e_l_record = spray_info[2]
+    rate_per_100l = spray_info[7],
+    cf = spray_info[8],
+    water_rate = spray_info[9],
+
+    if e_l_record == el:
+        rate_req_ha = ((rate_per_100l * cf) * water_rate/100)
+        print(rate_req_ha)
+        chem_req = rate_req_ha * size
+        print(chem_req)
+    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, spray=spray, chem_req=chem_req, rate_req_ha=rate_req_ha)
 
 if __name__ == "__main__":
     app.run(debug=True)
