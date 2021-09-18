@@ -30,19 +30,44 @@ Notion
 
 This app was originally intended to be a soil asssessment but the access to API documentation was limited.
 
-The app intends to allow users to add, edit, and delete vineyards and to calculate chemical rates.
+The app intends to allow users to add, edit, and delete vineyards and to calculate chemical rates and to use a weather API to determine if it is a good day to spray.
 
-<h4>Using the app</h4>
+<h4>App Website</h4>
 =======
-1. Open your terminal.
-2. Enter the following code in your  terminal to activate your virtual environment:
+<a href="https://vinproof.herokuapp.com/" title="Notion">Notion Planning</a>
+
+<h4>Using the app on your server</h4>
+=======
+1. Open your terminal.<br>
+2. Enter in your databases according to the schema.sql file to enter the three tables:
+    - vineyard
+    - users
+    - spray_program
+<br>
+3. Enter the following code in your  terminal to activate your virtual environment:
 
         <python -m venv venv>
         <source venv/bin/activate>
 
-3. Enter the following code into your  terminal:
+4. Enter the following code into your  terminal:
 
         <pip install flask>
         <pip install psycopg2>
 
-3. Update the title to match the name of your website.
+5. Run your app:
+
+        <python app.py>
+
+ 
+<h4>Roadblocks</h4>
+=======
+
+- find API documentation that is usable
+- Time Management! Set goals to acquire the minimum requirements before adding any other dimensions
+- CSS. This app is meant to be user friendly so ideally it would work across all media platforms
+
+<h4>Future Improvements</h4>
+=======
+
+- Implement Weather API
+- another form field for 
