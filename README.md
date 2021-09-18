@@ -22,3 +22,13 @@ This app uses this EL tool to determine what chemicals and rates are required fo
 
 Wireframes
 <a href="https://www.figma.com/file/RNoZZ8a1tHAC3suykHdfF5/VinProof?node-id=0%3A1" title="Vinproof">VinProof</a>
+
+Notion 
+<a href="https://www.notion.so/537298ba7ac748f1a4723cd7cdb48128?v=8b13014a410042dc96a032bb17a86ffe" title="Notion">Notion Planning</a>
+
+This app was originally intended to be a soil asssessment but the access to API documentation was limited.
+
+The app intends to allow users to add, edit, and delete vineyards and to calculate chemical rates.
+
+<h4>Using the app</h4>
+=======
