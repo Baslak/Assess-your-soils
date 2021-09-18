@@ -5,6 +5,7 @@
 <h1>##Spray Tool Calculator</h1>
 
 <h4>About this app:</h4>
+=======
 
 A lot of vineyard growers struggle to keep updated records and a careful spray diary. Furthermore, it's quite common for people to incorrectly apply the wrong product or spray rate if they are out in the field. 
 
@@ -18,6 +19,7 @@ This app uses this EL tool to determine what chemicals and rates are required fo
 
 <h4>Planning & Design</h4>
 =======
+
 * Designed on Figma *
 
 Wireframes
@@ -32,3 +34,15 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 
 <h4>Using the app</h4>
 =======
+1. Open your terminal.
+2. Enter the following code in your  terminal to activate your virtual environment:
+
+        <python -m venv venv>
+        <source venv/bin/activate>
+
+3. Enter the following code into your  terminal:
+
+        <pip install flask>
+        <pip install psycopg2>
+
+3. Update the title to match the name of your website.
