@@ -4,7 +4,7 @@
     {% if user_object['id'] %}
     <div class="info">
         <div class="save">
-            <form class="formtext" action="/save_vineyard" method="POST">
+            <form name="myForm" class="formtext" action="/save_vineyard" method="POST">
                 <input type="hidden" name="id" value="{{id}}">
                 Vineyard Site: <input id="values" type="text" name="vineyard_site" placeholder="{{vineyard_object['vineyard_site']}}" value="{{vineyard_site}}"><br>
                 Vineyard Size: <input id="values" type="text" name="vineyard_size" placeholder="{{vineyard_object['vineyard_size']}}" value="{{vineyard_size}}"><br>

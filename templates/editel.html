@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user_object['id'] %}
+    <div class="info">
+        <div class="save">
+            <form class="formtext" action="/save_el" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                EL_stage: <input id="values" type="text" name="E_L_Stage" placeholder="{{vineyard_object['E_L_stage']}}" value="{{E_L_Stage}}"><br>
+                <input class="vineyard_buttons" type="Submit" value="Save"><br>
+            </form><br>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

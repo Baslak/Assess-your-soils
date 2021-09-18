@@ -7,13 +7,13 @@
     <div class="spray_rates">
         {% for product in products %}
             Product: {{ product['name'] }}<br><br>
-            Rate Req: {{ product['rate_req_ha'] }}<br><br>
-            Chemical Req: {{ product['chem_req'] }}<br><br>
+            Rate Req: {{ product['rate_req_ha'] }} kg<br><br>
+            Chemical Req: {{ product['chem_req'] }} kg<br><br>
         {% endfor %}
     </div>
     </div>
         <div class="buttons_spraytool1">
-            <a class="vineyard_buttons" href="/edit_vineyard?id={{vineyard_object['id']}}">Edit EL</a><br>
+            <a class="vineyard_buttons" href="/edit_el?id={{vineyard_object['id']}}">Edit EL</a><br>
         </div>
         <div class="buttons_spraytool2">
             <a class="vineyard_buttons" href="/your_vineyard">Your Vineyard</a><br>
@@ -26,7 +26,7 @@
     </div>
         <div class="buttons_spraytool">
             <a class="vineyard_buttons" href="/spray_calculator?id={{vineyard_object['id']}}">Calculate</a><br>
-            <a class="vineyard_buttons" href="/edit_vineyard?id={{vineyard_object['id']}}">Edit EL</a><br>
+            <a class="vineyard_buttons" href="/edit_el?id={{vineyard_object['id']}}">Edit EL</a><br>
         </div>
     {% endif %}
         </form>

@@ -48,3 +48,6 @@ def delete_vineyard(id):
 
 def update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage, id):
   sql_write("UPDATE vineyard SET vineyard_site=%s, vineyard_size=%s, varieties=%s, elevation=%s, orientation=%s, E_L_Stage=%s WHERE id = %s", [vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage, id])
+
+def update_el(E_L_Stage, id):
+  sql_write("UPDATE vineyard SET E_L_Stage=%s WHERE id = %s", [E_L_Stage, id])

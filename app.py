@@ -1,7 +1,7 @@
 from re import template
 from database import sql_select, sql_write
 from models.users import login_check
-from models.vineyards import add_vineyard, vineyard_check, delete_vineyard, update_vineyard, amend_vineyard
+from models.vineyards import add_vineyard, vineyard_check, delete_vineyard, update_vineyard, amend_vineyard, update_el
 from models.calculator import check_spray
 
 from flask import Flask, request, render_template, redirect, session
@@ -155,6 +155,32 @@ def yourvineyardconfirm():
     
     return render_template('yourvineyard.html', user_object=user_object, vineyard_object=vineyard_object)
 
+@app.route('/save_el', methods=['POST'])
+def save_el():
+    user_id = session.get('user_id')    
+    user_object = login_check(user_id)
+
+    E_L_Stage = request.form.get('E_L_Stage')
+
+    id = request.form.get('id')
+
+    update_el(E_L_Stage, id)
+    vineyard_object = amend_vineyard(id)
+     
+    return render_template('spraytool.html', user_object=user_object, id=id, vineyard_object=vineyard_object)
+
+@app.route('/edit_el')
+def edit_el():
+    user_id = session.get('user_id')        
+    user_object = login_check(user_id)
+
+    id = request.args.get('id')
+    print(id)
+
+    vineyard_object = amend_vineyard(id)
+
+    return render_template('editel.html', vineyard_object=vineyard_object, user_object=user_object, id=id)
+
 @app.route('/edit_vineyard', methods=['GET'])
 def edit_vineyard():
     user_id = session.get('user_id')        
@@ -178,16 +204,14 @@ def save_vineyard():
     elevation = request.form.get('elevation')
     orientation = request.form.get('orientation')
     E_L_Stage = request.form.get('E_L_Stage')
-
     id = request.form.get('id')
+    print(vineyard_site)
 
-    if not vineyard_site == "":
-        update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage, id)
-        owner_email = session.get('email')
-        vineyard_object = vineyard_check(owner_email)
-        return render_template('yourvineyard.html', vineyard_object=vineyard_object, user_object=user_object)
-    else: 
-        return redirect('/')
+    update_vineyard(vineyard_site, vineyard_size, varieties, elevation, orientation, E_L_Stage, id)
+    owner_email = session.get('email')
+    vineyard_object = vineyard_check(owner_email)
+
+    return render_template('yourvineyard.html', vineyard_object=vineyard_object, user_object=user_object)
 
 @app.route('/remove_vineyard', methods=['POST'])
 def remove_vineyard():
@@ -233,8 +257,8 @@ def spray_calculator():
         rate_per_100l = key[6]
         cf = key[7]
         rate_per_ha = key[5]
-        rate_req_ha = ((rate_per_100l * cf) * water_rate/100)
-        chem_req = rate_req_ha * size
+        rate_req_ha = round(((rate_per_100l * cf) * water_rate/100))
+        chem_req = round(rate_req_ha * size)
         products.append({"name": name, "rate": rate_per_ha, "rate_req_ha": rate_req_ha, "chem_req": chem_req, "pd_target": pd_target, "notes": notes, "timing": timing})
 
     return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, products=products)
