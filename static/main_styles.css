@@ -249,6 +249,12 @@ h3 {
 	letter-spacing: 2px;
 	font-weight: bold;
 }
+.buttons_spraytool {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+    background: none;
+}
 .buttons_spraytool1 {
     order: 2;
     position: fixed;
