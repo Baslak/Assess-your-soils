@@ -39,10 +39,11 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 <h4>Using the app on your server</h4>
 =======
 1. Open your terminal.<br>
-2. Enter in your databases according to the schema.sql file to enter the three tables:
-    - vineyard
-    - users
-    - spray_program
+2. Enter in your databases according to the schema.sql file to enter the three tables:<br>
+<ul>
+    <li>vineyard</li>
+    <li>users</li>
+    <li>spray_program</li>
 <br>
 3. Enter the following code in your  terminal to activate your virtual environment:
 
@@ -70,4 +71,10 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 =======
 
 - Implement Weather API
-- another form field for 
+- Another form field for images of the vineyard
+- Fix edit fields to allow users to enter one parameter at a time
+
+<h4>Thank you</h4>
+=======
+
+Thank you to the team at GA for all your help with this project.
