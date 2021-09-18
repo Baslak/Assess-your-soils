@@ -34,7 +34,7 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 
 <h4>App Website</h4>
 =======
-<a href="https://vinproof.herokuapp.com/" title="Notion">Notion Planning</a>
+<a href="https://vinproof.herokuapp.com/" title="Vinproof">Vinproof</a>
 
 <h4>Using the app on your server</h4>
 =======
