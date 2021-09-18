@@ -119,6 +119,23 @@ h3 {
     color: #243C06;
     padding: 10px;
 }
+.spray_rates {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 20%;
+    background: none;
+    padding: 20px;
+    text-align: center;
+    font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+    font-size: 12px;
+    margin-top: .5em; color: #666;
+	line-height: 20px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-weight: bold;
+}
 .info {
     display: flex;
     flex-direction: column;

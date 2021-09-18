@@ -217,33 +217,28 @@ def spray_calculator():
     id = request.args.get('id')
 
     vineyard_object = amend_vineyard(id)
-    print(vineyard_object)
 
     el = vineyard_object['E_L_stage']
     size = vineyard_object['vineyard_size']
 
-    spray_info= check_spray(el)
-    print(spray_info)
+    spray_info = check_spray(el) #returning spray_info
+
+    products = []
     
-    spray = {
-        'vine_stage': spray_info[0],
-        'product': spray_info[2],
-        'pd_target': spray_info[3],
-        'notes': spray_info[4],
-        'approx_timing': spray_info[9],
-    }
-
-    e_l_record = spray_info[2]
-    rate_per_100l = spray_info[7],
-    cf = spray_info[8],
-    water_rate = spray_info[9],
-
-    if e_l_record == el:
+    for key in spray_info:
+        name = key[2]
+        water_rate = key[8]
+        pd_target = key[3]
+        notes = key[5]
+        timing = key[9]
+        rate_per_100l = key[6]
+        cf = key[7]
+        rate_per_ha = key[5]
         rate_req_ha = ((rate_per_100l * cf) * water_rate/100)
-        print(rate_req_ha)
         chem_req = rate_req_ha * size
-        print(chem_req)
-    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, spray=spray, chem_req=chem_req, rate_req_ha=rate_req_ha)
+        products.append({"name": name, "rate": rate_per_ha, "rate_req_ha": rate_req_ha, "chem_req": chem_req, "pd_target": pd_target, "notes": notes, "timing": timing})
+
+    return render_template('spraytool.html', user_object=user_object, vineyard_object=vineyard_object, products=products)
 
 if __name__ == "__main__":
     app.run(debug=True)
