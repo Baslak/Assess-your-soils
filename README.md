@@ -38,13 +38,16 @@ The app intends to allow users to add, edit, and delete vineyards and to calcula
 
 <h4>Using the app on your server</h4>
 =======
-1. Open your terminal.<br>
+
+1. Open your terminal.
+
 2. Enter in your databases according to the schema.sql file to enter the three tables:<br>
 <ul>
     <li>vineyard</li>
     <li>users</li>
     <li>spray_program</li>
 <br>
+
 3. Enter the following code in your  terminal to activate your virtual environment:
 
         <python -m venv venv>
