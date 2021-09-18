@@ -82,6 +82,7 @@ ii. Enter in your databases according to the schema.sql file to enter the three 
 - Another form field for images of the vineyard
 - Fix edit fields to allow users to enter one parameter at a time
 - Use some JS to edit forms more cleanly
+- Make it media responsive
 
 <h4>Thank you</h4>
 =======
