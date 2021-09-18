@@ -2,8 +2,6 @@
 
 <img src="/static/Logo.png" alt="Logo"/>
 
-* Designed on Figma *
-=======
 <h1>##Spray Tool Calculator</h1>
 
 <h4>About this app:</h4>
@@ -19,5 +17,8 @@ A common measure of vineyard development that is widely used is the <em>Modified
 This app uses this EL tool to determine what chemicals and rates are required for your vineyard based on size.
 
 <h4>Planning & Design</h4>
+=======
+* Designed on Figma *
 
-Wireframes [VinProof]("https://www.figma.com/file/RNoZZ8a1tHAC3suykHdfF5/VinProof?node-id=0%3A1")
+Wireframes
+<a href="https://www.figma.com/file/RNoZZ8a1tHAC3suykHdfF5/VinProof?node-id=0%3A1" title="Vinproof">VinProof</a>
