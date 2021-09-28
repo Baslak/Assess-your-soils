@@ -231,6 +231,7 @@ h3 {
     background: none;
     padding: 20px;
 }
+
 .formtext_spraytool {
     display: flex;
     flex-direction: column;
@@ -421,10 +422,34 @@ footer > .quote {
 }
 
 @media screen and (max-width: 680px){
-    .body{
-    font-size: 50%;
-        }
-    .image {
+    .buttons_main {
+        display: flex;
+        justify-content: center;
+    }
+    /* .menu-nav{
+        width: 50%;
+        height: 50%;
+        font-size: 14px;
+        display: flex;
+    }
+    .logo {
+        width: 150px;
+        height:150px;
+    }
+    .container {
+        width: 50%;
+        height: 50%;
+        background-image: url("/static/vineyard.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        order: 2;
+        display: flex;
+    }
+    .content {
+        width: 50%;
+        height: 50%;
+    }
+    background-image {
         width: 50%;
         height: 50%;
     }
@@ -437,5 +462,5 @@ footer > .quote {
     }
     footer {
         font-size: 10px;
-    }
+    } */
 }
