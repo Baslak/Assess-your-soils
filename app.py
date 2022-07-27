@@ -143,7 +143,7 @@ def yourvineyardconfirm():
 
     vineyard_site = request.form.get('vineyard_site')
     vineyard_size = request.form.get('vineyard_size')
-    varieties = request.form.get('varities')
+    varieties = request.form.get('varieties')
     elevation  = request.form.get('elevation')
     orientation = request.form.get('orientation')
     E_L_Stage = request.form.get('E_L_Stage')
